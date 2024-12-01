@@ -7,17 +7,22 @@ import tempfile
 import os
 import streamlit as st
 
-# Load pre-trained NLP model
 import spacy
 from spacy.cli import download
+import os
 
-# Try loading the model
+# Check if the model is available locally, otherwise download it
+model_name = "en_core_web_sm"
+
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load(model_name)
 except OSError:
-    # If model is missing, download it
-    download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+    print(f"Model {model_name} not found. Downloading...")
+    download(model_name)  # Downloads the model locally
+    nlp = spacy.load(model_name)
+
+print("Model loaded successfully!")
+
 
 
 # Step 1: Document Parsing

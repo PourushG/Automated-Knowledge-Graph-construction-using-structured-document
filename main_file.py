@@ -16,7 +16,7 @@ import spacy
 from pathlib import Path
 
 # Path to the model in your local project directory
-model_path = Path('./models/en_core_web_sm')
+model_path = Path('model/en_core_web_sm-3.8.0')
 
 try:
     nlp = spacy.load(model_path)

@@ -8,7 +8,17 @@ import os
 import streamlit as st
 
 # Load pre-trained NLP model
-nlp = spacy.load("en_core_web_sm")
+import spacy
+from spacy.cli import download
+
+# Try loading the model
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    # If model is missing, download it
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
+
 
 # Step 1: Document Parsing
 import mimetypes

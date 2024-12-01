@@ -12,16 +12,18 @@ from spacy.cli import download
 import os
 
 # Check if the model is available locally, otherwise download it
-model_name = "en_core_web_sm"
+import spacy
+from pathlib import Path
+
+# Path to the model in your local project directory
+model_path = Path('./models/en_core_web_sm')
 
 try:
-    nlp = spacy.load(model_name)
+    nlp = spacy.load(model_path)
+    print("Model loaded successfully!")
 except OSError:
-    print(f"Model {model_name} not found. Downloading...")
-    download(model_name)  # Downloads the model locally
-    nlp = spacy.load(model_name)
+    print(f"Error loading the model from {model_path}")
 
-print("Model loaded successfully!")
 
 
 
